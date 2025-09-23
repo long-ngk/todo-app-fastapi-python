@@ -7,6 +7,8 @@ from pydantic import BaseModel
 class CompanyBase(BaseModel):
     name: str
     description: Optional[str] = None
+    mode: Optional[str] = None
+    rating: Optional[int] = None
 
 
 class CompanyCreate(CompanyBase):
@@ -15,7 +17,6 @@ class CompanyCreate(CompanyBase):
 
 class Company(CompanyBase):
     id: int
-    created_at: datetime
 
     class Config:
         from_attributes = True

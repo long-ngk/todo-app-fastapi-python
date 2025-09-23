@@ -9,6 +9,8 @@ from .company import Company
 class UserBase(BaseModel):
     email: EmailStr
     username: str
+    first_name: str
+    last_name: str
     company_id: int
 
 
@@ -19,6 +21,7 @@ class UserCreate(UserBase):
 class User(UserBase):
     id: int
     is_active: bool
+    is_admin: bool
     created_at: datetime
     company: Optional[Company] = None
 

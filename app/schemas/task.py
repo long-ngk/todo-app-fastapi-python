@@ -5,8 +5,10 @@ from pydantic import BaseModel
 
 
 class TaskBase(BaseModel):
-    title: str
+    summary: str
     description: Optional[str] = None
+    status: Optional[str] = None
+    priority: Optional[str] = None
 
 
 class TaskCreate(TaskBase):
@@ -17,8 +19,6 @@ class Task(TaskBase):
     id: int
     is_completed: bool
     user_id: int
-    created_at: datetime
-    updated_at: Optional[datetime] = None
 
     class Config:
         from_attributes = True

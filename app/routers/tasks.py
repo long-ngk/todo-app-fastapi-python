@@ -81,6 +81,26 @@ def update_task(
     return task
 
 
+@router.patch("/tasks/{task_id}/status")
+def update_task_status(
+    task_id: int,
+    status: str,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(get_current_user),
+):
+    task = (
+        db.query(Task)
+        .filter(Task.id == task_id, Task.user_id == current_user.id)
+        .first()
+    )
+    if task is None:
+        raise HTTPException(status_code=404, detail="Task not found")
+
+    setattr(task, 'status', status)
+    db.commit()
+    return {"message": "Task status updated successfully"}
+
+
 @router.patch("/tasks/{task_id}/complete")
 def complete_task(
     task_id: int,
