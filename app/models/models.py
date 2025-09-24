@@ -43,7 +43,6 @@ class Task(Base):
     description = Column(Text)
     status = Column(String)
     priority = Column(String)
-    is_completed = Column(Boolean, default=False)
     user_id = Column(Integer, ForeignKey("users.id"))
 
     user = relationship("User", back_populates="tasks")

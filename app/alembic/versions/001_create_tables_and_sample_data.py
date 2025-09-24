@@ -55,7 +55,6 @@ def upgrade() -> None:
         sa.Column('description', sa.Text(), nullable=True),
         sa.Column('status', sa.String(), nullable=True),
         sa.Column('priority', sa.String(), nullable=True),
-        sa.Column('is_completed', sa.Boolean(), nullable=True),
         sa.Column('user_id', sa.Integer(), nullable=True),
         sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
         sa.PrimaryKeyConstraint('id')
@@ -79,12 +78,12 @@ def upgrade() -> None:
     """))
 
     op.execute(text("""
-        INSERT INTO tasks (summary, description, status, priority, is_completed, user_id) VALUES
-        ('Setup project', 'Initialize the FastAPI project', 'completed', 'high', true, 2),
-        ('Create API endpoints', 'Develop REST API endpoints', 'in_progress', 'high', false, 2),
-        ('Write documentation', 'Document the API', 'todo', 'medium', false, 2),
-        ('Design database', 'Create database schema', 'completed', 'high', true, 3),
-        ('Implement authentication', 'Add JWT authentication', 'in_progress', 'high', false, 3);
+        INSERT INTO tasks (summary, description, status, priority, user_id) VALUES
+        ('Setup project', 'Initialize the FastAPI project', 'completed', 'high', 2),
+        ('Create API endpoints', 'Develop REST API endpoints', 'in_progress', 'high', 2),
+        ('Write documentation', 'Document the API', 'todo', 'medium', 2),
+        ('Design database', 'Create database schema', 'completed', 'high', 3),
+        ('Implement authentication', 'Add JWT authentication', 'in_progress', 'high', 3);
     """))
 
 
