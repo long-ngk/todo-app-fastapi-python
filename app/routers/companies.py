@@ -32,7 +32,7 @@ def read_companies(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    if not current_user.is_admin:
+    if not getattr(current_user, 'is_admin', False):
         raise HTTPException(status_code=403, detail="Only admin can view all companies")
     companies = db.query(Company).offset(skip).limit(limit).all()
     return companies
@@ -44,7 +44,7 @@ def read_company(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    if not current_user.is_admin and current_user.company_id != company_id:
+    if not getattr(current_user, 'is_admin', False) and getattr(current_user, 'company_id') != company_id:
         raise HTTPException(status_code=403, detail="You can only view your own company")
     company = db.query(Company).filter(Company.id == company_id).first()
     if company is None:
