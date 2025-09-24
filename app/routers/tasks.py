@@ -6,8 +6,8 @@ from sqlalchemy.orm import Session
 from app.auth import get_current_user
 from app.database import get_db
 from app.models.models import Task, User
-from app.schemas.task import Task as TaskSchema
-from app.schemas.task import TaskCreate
+from app.schemas.task import Task as TaskSchema, TaskCreate
+from app.enums import TaskStatus
 
 router = APIRouter()
 
@@ -84,7 +84,7 @@ def update_task(
 @router.patch("/tasks/{task_id}/status")
 def update_task_status(
     task_id: int,
-    status: str,
+    status: TaskStatus,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):

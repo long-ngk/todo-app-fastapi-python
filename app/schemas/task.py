@@ -2,12 +2,13 @@ from datetime import datetime
 from typing import Optional
 
 from pydantic import BaseModel
+from app.enums import TaskStatus
 
 
 class TaskBase(BaseModel):
     summary: str
     description: Optional[str] = None
-    status: Optional[str] = None
+    status: Optional[TaskStatus] = None
     priority: Optional[str] = None
 
 

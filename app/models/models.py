@@ -1,8 +1,9 @@
-from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String, Text
+from sqlalchemy import Boolean, Column, DateTime, ForeignKey, Integer, String, Text, Enum
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import func
 
 from app.database import Base
+from app.enums import TaskStatus
 
 
 class Company(Base):
@@ -41,7 +42,7 @@ class Task(Base):
     id = Column(Integer, primary_key=True, index=True)
     summary = Column(String, index=True)
     description = Column(Text)
-    status = Column(String)
+    status = Column(Enum(TaskStatus), default=TaskStatus.TODO)
     priority = Column(String)
     user_id = Column(Integer, ForeignKey("users.id"))
 

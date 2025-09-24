@@ -79,11 +79,11 @@ def upgrade() -> None:
 
     op.execute(text("""
         INSERT INTO tasks (summary, description, status, priority, user_id) VALUES
-        ('Setup project', 'Initialize the FastAPI project', 'completed', 'high', 2),
-        ('Create API endpoints', 'Develop REST API endpoints', 'in_progress', 'high', 2),
-        ('Write documentation', 'Document the API', 'todo', 'medium', 2),
-        ('Design database', 'Create database schema', 'completed', 'high', 3),
-        ('Implement authentication', 'Add JWT authentication', 'in_progress', 'high', 3);
+        ('Setup project', 'Initialize the FastAPI project', 'Completed', 'high', 2),
+        ('Create API endpoints', 'Develop REST API endpoints', 'In progress', 'high', 2),
+        ('Write documentation', 'Document the API', 'To do', 'medium', 2),
+        ('Design database', 'Create database schema', 'Completed', 'high', 3),
+        ('Implement authentication', 'Add JWT authentication', 'In progress', 'high', 3);
     """))
 
 
