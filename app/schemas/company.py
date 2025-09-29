@@ -18,5 +18,4 @@ class CompanyCreate(CompanyBase):
 class Company(CompanyBase):
     id: int
 
-    class Config:
-        from_attributes = True
+    model_config = {"from_attributes": True}

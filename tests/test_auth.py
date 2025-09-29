@@ -13,4 +13,4 @@ def test_login_invalid_credentials(client):
 
 def test_login_missing_credentials(client):
     response = client.post("/token", data={})
-    assert response.status_code == status.HTTP_422_UNPROCESSABLE_ENTITY
+    assert response.status_code == status.HTTP_422_UNPROCESSABLE_CONTENT
